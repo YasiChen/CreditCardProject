@@ -7,6 +7,8 @@
 import os
 import pandas as pd
 import numpy as np
+import matplotlib as plt
+from matplotlib.pyplot import pie, axis, show
 
 desired_width=320
 
@@ -42,6 +44,19 @@ len(duplist)
 # application['ID'].dtype
 application[~application['ID'].isin(duplist)]
 # the application data is clear
+
+# who are our applicant?
+# gender
+sums = application.ID.groupby(application.CODE_GENDER).count()
+axis('equal')
+labels=('Female','Male')
+pie(sums,labels=labels,autopct='%.2f%%')
+show()
+# from the pie chart itself, we can observe that our female clients are almost twice as much as male
+# it does not reconcile to the norms that female are more conservative when it comes to credit card or other
+# new financial instruments usage
+
+# also want to see different genders' family condition(Married/Single/Children?)
 
 # join the dataset by ID
 # want to preserve the orginal index for the application dataset
