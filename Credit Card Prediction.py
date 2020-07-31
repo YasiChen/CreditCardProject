@@ -38,20 +38,16 @@ list(duplist)
 len(duplist)
 # 47 ID in total, apply for the credit card more than once or there's data entry mistake
 # however, since they take up about 0.01%(47/438557) of the sample, i decide to delete the data include in the list
-
-
 # duplist.dtype
 # application['ID'].dtype
-
-
-
-# coz we want to see how the initial data impact the default rate, therefore only keep the first month of use of credit card  data
-begin=pd.DataFrame(credit.groupby(["ID"])["MONTHS_BALANCE"].agg(min))
-begin=begin.rename(columns={'MONTHS_BALANCE':'begin_month'})
-
+application[~application['ID'].isin(duplist)]
+# the application data is clear
 
 # join the dataset by ID
 # want to preserve the orginal index for the application dataset
-df_join=pd.merge(left=, right=, left_on='ID', right_on='ID')
+df_join=pd.merge(left=application, right=credit, left_on='ID', right_on='ID')
+
+
+
 
 
